@@ -23,7 +23,10 @@ def prnt(p):
 
 def config():
     try:
+        global pb
         API_Key = weechat.config_get_plugin('api_key')
+        if API_Key == '':
+            raise Exception()
         pb = Pushbullet(API_Key)
         print_hook = weechat.hook_print('', '', '', 1, 'handle_msg', '')
     except:
